@@ -19,8 +19,9 @@ export default class home extends Component {
     // 头部左侧
     renderLeftItem() {
         return (
-            <TouchableOpacity onPress={() => { this.props.navigation.navigate('Search') }}>
-                <Image source={require('../../img/search.png')} style={styles.navLeft} />
+            <TouchableOpacity onPress={() => { this.props.navigation.navigate('Search') }} style={styles.navLeft}>
+                <Image source={require('../../img/scanning.png')} style={styles.navIcon} />
+                <Text style={styles.navText}>扫一扫</Text>
             </TouchableOpacity>
         )
     }
@@ -29,7 +30,7 @@ export default class home extends Component {
         return (
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('Search') }}>
                 <View style={styles.searchBox}>
-                    <Image source={require('../../img/search2.png')} style={styles.searchIcon} />
+                    <Image source={require('../../img/search.png')} style={styles.searchIcon} />
                     <Text style={styles.searchContent}>搜索商品, 共10161款好物</Text>
                 </View>
             </TouchableOpacity>
@@ -38,8 +39,9 @@ export default class home extends Component {
     // 头部右侧
     renderRightItem() {
         return (
-            <TouchableOpacity onPress={() => { this.props.navigation.navigate('MessageCenter') }}>
-                <Image source={require('../../img/message.png')} style={styles.navRight} />
+            <TouchableOpacity onPress={() => { this.props.navigation.navigate('MessageCenter') }} style={styles.navRight}>
+                <Image source={require('../../img/remind.png')} style={styles.navIcon} />
+                <Text style={styles.navText}>消息</Text>
             </TouchableOpacity>
         )
     }
@@ -67,12 +69,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#efefef',
     },
-    navLeft: {
-        marginLeft: 15,
+    navLeft:{
+        alignItems:'center',
+        marginLeft: 10,
     },
     navRight: {
-        marginRight: 15,
+        alignItems:'center',
+        marginRight: 10,
     },
+    navIcon: {
+        height:20,
+        width:20,
+    },
+    navText:{
+        fontSize:10,
+    },   
     searchBox: {
         flexDirection: 'row',
         alignItems: 'center',
