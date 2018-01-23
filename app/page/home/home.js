@@ -6,15 +6,39 @@ import {
     Button,
     Image,
     TouchableOpacity,
+    ScrollView,
     Dimensions,
 } from 'react-native';
 
 // 引用头部组件
 import CommonHead from '../../components/commonHead';
 
+//引用插件
+import ScrollableTabView, { ScrollableTabBar, DefaultTabBar } from 'react-native-scrollable-tab-view';
+
+import Recommend from './recommend';
+import Otherpage from './otherpage';
+
+// 取得屏幕的宽高Dimensions
 const { width, height } = Dimensions.get('window');
 
 export default class home extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            tabShow: false,
+            label: ['推荐', '新品', '居家', '餐厨', '配件', '服装', '电器', '洗护', '杂货', '饮食', '婴童', '志趣'],
+        };
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                tabShow: true
+            });
+        }, 0)
+    }
 
     // 头部左侧
     renderLeftItem() {
@@ -46,6 +70,36 @@ export default class home extends Component {
         )
     }
 
+    // 滑动tab
+    renderScrollableTab() {
+        let label = this.state.label
+        if (this.state.tabShow){
+            return (
+                <ScrollableTabView
+                    renderTabBar={() => <ScrollableTabBar />}
+                    tabBarBackgroundColor='#fff'
+                    tabBarActiveTextColor='#b4282d'
+                    tabBarInactiveTextColor='#333'
+                    tabBarUnderlineStyle={styles.tabBarUnderline}
+                >
+                    {
+                        label.map((item, index) => {
+                            if (item == '推荐') {
+                                return (
+                                    <Recommend tabLabel={item} key={index}/>
+                                )
+                            } else {
+                                return (
+                                    <Otherpage tabLabel={item} key={index} />
+                                )
+                            }
+                        })
+                    }
+                </ScrollableTabView> 
+            )
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -54,11 +108,9 @@ export default class home extends Component {
                     titleItem={() => this.renderTitleItem()}
                     rightItem={() => this.renderRightItem()}
                 />
-                <Text>home</Text>
-                <Button 
-                    onPress={() => {this.props.navigation.navigate('DrawerToggle')}}
-                    title="Drawer"
-                />
+                <View style={{ flex: 1 }}>
+                    {this.renderScrollableTab()}
+                </View>
             </View>
         );
     }
@@ -69,26 +121,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#efefef',
     },
-    navLeft:{
-        alignItems:'center',
+    navLeft: {
+        alignItems: 'center',
         marginLeft: 10,
     },
     navRight: {
-        alignItems:'center',
+        alignItems: 'center',
         marginRight: 10,
     },
     navIcon: {
-        height:20,
-        width:20,
+        height: 20,
+        width: 20,
     },
-    navText:{
-        fontSize:10,
-    },   
+    navText: {
+        fontSize: 10,
+    },
     searchBox: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'center',
-        width: width*0.7,
+        justifyContent: 'center',
+        width: width * 0.7,
         backgroundColor: '#ededed',
         borderRadius: 5,
         height: 30,
@@ -102,4 +154,8 @@ const styles = StyleSheet.create({
         color: '#666',
         fontSize: 14,
     },
+    tabBarUnderline: {
+        backgroundColor: '#b4282d',
+        height: 2,
+    }
 });
