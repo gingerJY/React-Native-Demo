@@ -76,17 +76,25 @@ export default class home extends Component {
         if (this.state.tabShow){
             return (
                 <ScrollableTabView
-                    renderTabBar={() => <ScrollableTabBar />}
+                    style={{paddingTop: 8}}
+                    renderTabBar={() => 
+                        <ScrollableTabBar 
+                            style={{height:35}} 
+                            tabStyle={{height:34,paddingLeft: 15,paddingRight: 15,}}
+                        />
+                    }
                     tabBarBackgroundColor='#fff'
                     tabBarActiveTextColor='#b4282d'
                     tabBarInactiveTextColor='#333'
-                    tabBarUnderlineStyle={styles.tabBarUnderline}
+                    tabBarUnderlineStyle={styles.tabBarUnderline}    
                 >
                     {
                         label.map((item, index) => {
                             if (item == '推荐') {
                                 return (
-                                    <Recommend tabLabel={item} key={index}/>
+                                    <ScrollView tabLabel={item} key={index}>
+                                        <Recommend/>
+                                    </ScrollView>
                                 )
                             } else {
                                 return (
@@ -119,7 +127,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#efefef',
+        backgroundColor: '#fff',
     },
     navLeft: {
         alignItems: 'center',
@@ -157,5 +165,7 @@ const styles = StyleSheet.create({
     tabBarUnderline: {
         backgroundColor: '#b4282d',
         height: 2,
+        width:width/8,
+        marginLeft:6
     }
 });
