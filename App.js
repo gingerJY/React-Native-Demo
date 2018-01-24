@@ -34,7 +34,7 @@ const Tab = TabNavigator(
             navigationOptions: ({ navigation }) => ({
                 tabBarLabel: '首页',
                 tabBarIcon: ({ tintColor }) => (
-                    <Image source={require('./app/img/home.png')} style={[{ tintColor: tintColor, width: 25, height: 25 }]} />
+                    <Image source={require('./app/img/home.png')} style={[{ tintColor: tintColor, width: 20, height: 20 }]} />
                 ),
             })
         },
@@ -43,16 +43,16 @@ const Tab = TabNavigator(
             navigationOptions: ({ navigation }) => ({
                 tabBarLabel: '分类',
                 tabBarIcon: ({ tintColor }) => (
-                    <Image source={require('./app/img/category.png')} style={[{ tintColor: tintColor, width: 25, height: 25 }]} />
+                    <Image source={require('./app/img/category.png')} style={[{ tintColor: tintColor, width: 20, height: 20 }]} />
                 ),
             })
         },
         User: {
             screen: User,
             navigationOptions: ({ navigation }) => ({
-                tabBarLabel: '我的',
+                tabBarLabel: '个人',
                 tabBarIcon: ({ tintColor }) => (
-                    <Image source={require('./app/img/user.png')} style={[{ tintColor: tintColor, width: 25, height: 25 }]} />
+                    <Image source={require('./app/img/account.png')} style={[{ tintColor: tintColor, width: 20, height: 20 }]} />
                 ),
             })
         },
@@ -66,7 +66,10 @@ const Tab = TabNavigator(
         tabBarOptions: {
             activeTintColor: '#b4282d',
             inactiveTintColor: '#979797',
-            style: { backgroundColor: '#ffffff' },
+            style: { backgroundColor: '#ffffff'},
+            labelStyle: {
+                fontSize: 12,
+            }
         },
     }
 );
