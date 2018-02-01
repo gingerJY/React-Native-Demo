@@ -18,11 +18,12 @@ import Category from './app/page/category/category';
 import User from './app/page/user/user';
 
 import Search from './app/page/search/search';
+import MessageCenter from './app/page/message/messageCenter';
 
 export default class App extends Component<{}> {
     render() {
         return (
-            <Drawer />
+            <Stack />
         );
     }
 }
@@ -78,6 +79,7 @@ const Stack = StackNavigator(
     {
         Tab: { screen: Tab },
         Search: { screen: Search },
+        MessageCenter:{ screen: MessageCenter }
     },
 
     {
@@ -91,11 +93,4 @@ const Stack = StackNavigator(
         mode: 'card',
         headerMode: 'screen',
     }
-);
-
-const Drawer = DrawerNavigator(
-    {
-        Stack: { screen: Stack },
-        Search: { screen: Search },
-    },
 );
